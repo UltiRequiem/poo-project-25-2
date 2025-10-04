@@ -5,7 +5,7 @@ import { products } from "./m0ck-products";
 export default function Dashboard() {
   const grandTotal = products.reduce(
     (sum, product) => sum + product.price * product.quantity_sold,
-    0
+    0,
   );
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -22,18 +22,24 @@ export default function Dashboard() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                Buscar
-              </button>
-              <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-                Agregar
-              </button>
+              <a href="/create-product">
+                <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                  Agregar
+                </button>
+              </a>
             </div>
           </div>
         </div>
@@ -69,15 +75,25 @@ export default function Dashboard() {
                   <tr>
                     <td colSpan={4} className="px-6 py-12 text-center">
                       <div className="flex flex-col items-center justify-center">
-                        <svg className="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                        <svg
+                          className="w-16 h-16 text-gray-400 mb-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                          />
                         </svg>
                         <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">
                           No hay productos
                         </p>
                         <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">
                           Haz clic en "Agregar" para añadir tu primer producto
-                        </p>                
+                        </p>
                       </div>
                     </td>
                   </tr>
@@ -85,7 +101,10 @@ export default function Dashboard() {
                   products.map((product) => {
                     const total = product.price * product.quantity_sold;
                     return (
-                      <tr key={product.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                      <tr
+                        key={product.id}
+                        className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                      >
                         <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
                           {product.name}
                         </td>
@@ -93,7 +112,7 @@ export default function Dashboard() {
                           ${product.price.toFixed(2)}
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 text-right">
-                            {`${product.quantity_sold}/${product.quantity_max}` } 
+                          {`${product.quantity_sold}/${product.quantity_max}`}
                         </td>
                         <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white text-right">
                           ${total.toFixed(2)}
@@ -105,7 +124,10 @@ export default function Dashboard() {
               </tbody>
               <tfoot className="bg-gray-100 dark:bg-gray-700">
                 <tr>
-                  <td colSpan={3} className="px-6 py-4 text-right text-base font-bold text-gray-900 dark:text-white">
+                  <td
+                    colSpan={3}
+                    className="px-6 py-4 text-right text-base font-bold text-gray-900 dark:text-white"
+                  >
                     VALOR TOTAL:
                   </td>
                   <td className="px-6 py-4 text-right text-lg font-bold text-green-600 dark:text-green-400">
