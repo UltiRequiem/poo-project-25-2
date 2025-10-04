@@ -18,7 +18,7 @@ export default function Dashboard() {
                 Dashboard
               </h1>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                Gestión de Productos
+                Gestor de Ventas.
               </p>
             </div>
             <div className="flex items-center gap-3">
@@ -57,7 +57,7 @@ export default function Dashboard() {
                     Precio
                   </th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Cantidad
+                    Stock
                   </th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Total
@@ -77,7 +77,7 @@ export default function Dashboard() {
                         </p>
                         <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">
                           Haz clic en "Agregar" para añadir tu primer producto
-                        </p>
+                        </p>                
                       </div>
                     </td>
                   </tr>
@@ -93,7 +93,7 @@ export default function Dashboard() {
                           ${product.price.toFixed(2)}
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 text-right">
-                          {product.quantity_sold}
+                            {`${product.quantity_sold}/${product.quantity_max}` } 
                         </td>
                         <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white text-right">
                           ${total.toFixed(2)}
