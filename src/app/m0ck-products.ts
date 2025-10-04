@@ -37,5 +37,4 @@ export const products: Product[] = [
     created_at: "2023-10-02T14:30:00Z",
     updated_at: "2023-10-04T16:45:00Z",
   },
-
-];    
+];

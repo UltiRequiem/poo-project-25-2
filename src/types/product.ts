@@ -12,7 +12,7 @@ export interface CreateProductInput {
   name: string;
   quantity_max: number;
   price: number;
-  quantity_sold?: number; 
+  quantity_sold?: number;
 }
 
 export interface UpdateProductInput {
