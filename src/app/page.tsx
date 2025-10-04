@@ -18,7 +18,7 @@ export default async function Dashboard() {
         <div className="px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-purple-800">
                 Dashboard
               </h1>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
@@ -60,19 +60,19 @@ export default async function Dashboard() {
             <table className="w-full">
               <thead className="bg-gray-50 dark:bg-gray-700/50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-blue-500 dark:text-blue-400 uppercase tracking-wider">
                     Producto
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right text-xs font-semibold text-blue-500 dark:text-blue-400 uppercase tracking-wider">
                     Precio
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right text-xs font-semibold text-blue-500 dark:text-blue-400 uppercase tracking-wider">
                     Stock
                   </th>
-                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-xs font-semibold text-blue-500 dark:text-blue-400 uppercase tracking-wider">
                     Acciones
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right text-xs font-semibold text-blue-500 dark:text-blue-400 uppercase tracking-wider">
                     Total
                   </th>
                 </tr>
@@ -117,7 +117,7 @@ export default async function Dashboard() {
                         <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
                           {product.name}
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 text-right">
+                        <td className="px-6 py-4 text-sm text-gray-400 dark:text-gray-400 text-right">
                           ${product.price.toFixed(2)}
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 text-right">
