@@ -24,3 +24,38 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  /* Contenedor de tabla mejorado */
+  .table-container {
+    @apply bg-white dark:bg-gray-800/95 rounded-xl shadow-lg border border-gray-200 dark:border-white/10 backdrop-blur-sm;
+  }
+  
+  /* Header de tabla sticky con blur */
+  .table-header-sticky {
+    @apply sticky top-0 bg-gray-50/95 dark:bg-gray-900/95 backdrop-blur-md z-10 border-b border-gray-200 dark:border-white/10;
+  }
+  
+  /* Filas con hover suave */
+  .table-row-hover {
+    @apply hover:bg-gray-50/80 dark:hover:bg-white/5 transition-all duration-200 hover:shadow-sm;
+  }
+  
+  /* Botones de acción mejorados */
+  .action-btn {
+    @apply transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-1 dark:focus:ring-offset-gray-800;
+  }
+  
+  .action-btn-increment {
+    @apply bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-500 text-white rounded-md shadow-sm hover:shadow-md focus:ring-green-500/50;
+  }
+  
+  .action-btn-decrement {
+    @apply bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-500 text-white rounded-md shadow-sm hover:shadow-md focus:ring-red-500/50;
+  }
+  
+  /* Footer total mejorado */
+  .table-footer-total {
+    @apply bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 border-t-2 border-gray-300 dark:border-white/20;
+  }
+}
