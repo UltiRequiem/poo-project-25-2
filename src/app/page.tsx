@@ -1,9 +1,10 @@
 "use server";
 
 import { getProducts } from "@/lib/products";
+import ProductActions from "@/components/ProductActions";
 
 export default async function Dashboard() {
-  const products = await getProducts();
+  const products = await getProducts()
 
   const grandTotal = products.reduce(
     (sum, product) => sum + product.price * product.quantity_sold,
@@ -68,8 +69,10 @@ export default async function Dashboard() {
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Stock
                   </th>
-                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"></th>
-                  <th className="px-6 py-3 text-right texcot-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    Acciones
+                  </th>
+                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Total
                   </th>
                 </tr>
@@ -104,6 +107,8 @@ export default async function Dashboard() {
                 ) : (
                   products.map((product) => {
                     const total = product.price * product.quantity_sold;
+                    const available = product.quantity_max - product.quantity_sold;
+                    
                     return (
                       <tr
                         key={product.id}
@@ -116,41 +121,25 @@ export default async function Dashboard() {
                           ${product.price.toFixed(2)}
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 text-right">
-                          {`${product.quantity_sold}/${product.quantity_max}`}
+                          <div className="flex flex-col items-end">
+                            <span className="font-medium">
+                              {product.quantity_sold}/{product.quantity_max}
+                            </span>
+                            <span className={`text-xs ${
+                              available > 0 
+                                ? "text-green-600 dark:text-green-400" 
+                                : "text-red-600 dark:text-red-400"
+                            }`}>
+                              {available > 0 ? `${available} disponibles` : "Agotado"}
+                            </span>
+                          </div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="flex items-center justify-center gap-2">
-                            <button className="w-8 h-8 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white rounded transition-colors">
-                              <svg
-                                className="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M20 12H4"
-                                />
-                              </svg>
-                            </button>
-                            <button className="w-8 h-8 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white rounded transition-colors">
-                              <svg
-                                className="w-4 h-4"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M12 4v16m8-8H4"
-                                />
-                              </svg>
-                            </button>
-                          </div>
+                          <ProductActions 
+                            productId={product.id}
+                            currentSold={product.quantity_sold}
+                            maxQuantity={product.quantity_max}
+                          />
                         </td>
                         <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white text-right">
                           ${total.toFixed(2)}
