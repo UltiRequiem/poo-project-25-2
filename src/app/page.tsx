@@ -3,13 +3,12 @@
 import { getProducts } from "@/lib/products";
 
 export default async function Dashboard() {
-  const products = await getProducts()
+  const products = await getProducts();
 
   const grandTotal = products.reduce(
     (sum, product) => sum + product.price * product.quantity_sold,
     0,
   );
-
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -69,8 +68,7 @@ export default async function Dashboard() {
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Stock
                   </th>
-                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  </th>
+                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"></th>
                   <th className="px-6 py-3 text-right texcot-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Total
                   </th>
@@ -123,13 +121,33 @@ export default async function Dashboard() {
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center gap-2">
                             <button className="w-8 h-8 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white rounded transition-colors">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M20 12H4"
+                                />
                               </svg>
                             </button>
                             <button className="w-8 h-8 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white rounded transition-colors">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M12 4v16m8-8H4"
+                                />
                               </svg>
                             </button>
                           </div>
