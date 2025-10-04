@@ -55,6 +55,7 @@ export default function CreateProduct() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
+                  <title>Volver</title>
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -96,6 +97,7 @@ export default function CreateProduct() {
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
+                        <title>Comprobar</title>
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -110,6 +112,7 @@ export default function CreateProduct() {
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
+                        <title>Error</title>
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -229,6 +232,7 @@ export default function CreateProduct() {
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
+                          <title>Cargando</title>
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -246,6 +250,7 @@ export default function CreateProduct() {
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
+                          <title>Comprobar</title>
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"

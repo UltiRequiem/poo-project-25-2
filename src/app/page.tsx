@@ -27,13 +27,14 @@ export default async function Dashboard() {
             </div>
             <div className="flex items-center gap-3">
               <a href="/create-product">
-                <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" type="button">
                   <svg
                     className="w-5 h-5"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
+                    <title>Agregar</title>
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -88,6 +89,7 @@ export default async function Dashboard() {
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
+                          <title>No hay productos</title>
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
