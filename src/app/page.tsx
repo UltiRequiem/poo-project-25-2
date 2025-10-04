@@ -1,12 +1,16 @@
-"use client";
+"use server";
 
-import { products } from "./m0ck-products";
+import { getProducts } from "@/lib/products";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const products = await getProducts()
+
   const grandTotal = products.reduce(
     (sum, product) => sum + product.price * product.quantity_sold,
     0,
   );
+
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
