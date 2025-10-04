@@ -69,6 +69,8 @@ export default async function Dashboard() {
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Stock
                   </th>
+                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  </th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Total
                   </th>
@@ -77,7 +79,7 @@ export default async function Dashboard() {
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 {products.length === 0 ? (
                   <tr>
-                    <td colSpan={4} className="px-6 py-12 text-center">
+                    <td colSpan={5} className="px-6 py-12 text-center">
                       <div className="flex flex-col items-center justify-center">
                         <svg
                           className="w-16 h-16 text-gray-400 mb-4"
@@ -117,6 +119,20 @@ export default async function Dashboard() {
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 text-right">
                           {`${product.quantity_sold}/${product.quantity_max}`}
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center justify-center gap-2">
+                            <button className="w-8 h-8 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white rounded transition-colors">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                              </svg>
+                            </button>
+                            <button className="w-8 h-8 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white rounded transition-colors">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                              </svg>
+                            </button>
+                          </div>
                         </td>
                         <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white text-right">
                           ${total.toFixed(2)}
