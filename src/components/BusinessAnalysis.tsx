@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { Product } from "@/types/product";
 
 interface BusinessAnalysisProps {
@@ -14,10 +14,10 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
 
   const fetchAnalysis = async () => {
     if (products.length === 0) return;
-    
+
     setLoading(true);
     setError(null);
-    
+
     try {
       const response = await fetch("/api/analysis", {
         method: "POST",
@@ -59,6 +59,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
+              <title>Análisis de Negocio</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -72,6 +73,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
             onClick={fetchAnalysis}
             disabled={loading}
             className="flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            type="button"
           >
             <svg
               className={`w-4 h-4 ${loading ? "animate-spin" : ""}`}
@@ -79,6 +81,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
+              <title>Actualizar Análisis</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -90,7 +93,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
           </button>
         </div>
       </div>
-      
+
       <div className="px-6 py-4">
         {loading && (
           <div className="flex items-center justify-center py-8">
@@ -101,6 +104,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
+                <title>Generando Análisis</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -112,7 +116,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
             </div>
           </div>
         )}
-        
+
         {error && (
           <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
             <div className="flex items-center gap-2 text-red-800 dark:text-red-400">
@@ -122,6 +126,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
+                <title>Error</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -131,16 +136,18 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
               </svg>
               <span className="font-medium">Error al generar análisis</span>
             </div>
-            <p className="text-red-700 dark:text-red-300 text-sm mt-1">{error}</p>
+            <p className="text-red-700 dark:text-red-300 text-sm mt-1">
+              {error}
+            </p>
           </div>
         )}
-        
+
         {analysis && !loading && !error && (
           <div className="prose prose-gray dark:prose-invert max-w-none">
-                {analysis}
+            {analysis}
           </div>
         )}
-        
+
         {!analysis && !loading && !error && (
           <div className="text-center py-8 text-gray-500 dark:text-gray-400">
             <svg
@@ -149,6 +156,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
+              <title>Análisis Vacio</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -156,7 +164,9 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
                 d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2-2V7a2 2 0 012-2h2a2 2 0 002 2v2a2 2 0 002 2h2a2 2 0 012-2V7a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 00-2 2h-2a2 2 0 00-2 2v6a2 2 0 01-2 2H9z"
               />
             </svg>
-            <p>Haz clic en "Actualizar" para generar un análisis de tus productos</p>
+            <p>
+              Haz clic en "Actualizar" para generar un análisis de tus productos
+            </p>
           </div>
         )}
       </div>

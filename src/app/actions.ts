@@ -1,7 +1,11 @@
 "use server";
 
-import { incrementSoldQuantity, decrementSoldQuantity, deleteProduct } from "@/lib/products";
 import { revalidatePath } from "next/cache";
+import {
+  decrementSoldQuantity,
+  deleteProduct,
+  incrementSoldQuantity,
+} from "@/lib/products";
 
 export async function incrementProductQuantity(productId: number) {
   try {
