@@ -1,6 +1,12 @@
 "use client";
 
+import { products } from "./m0ck-products";
+
 export default function Dashboard() {
+  const grandTotal = products.reduce(
+    (sum, product) => sum + product.price * product.quantity_sold,
+    0
+  );
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
@@ -12,7 +18,7 @@ export default function Dashboard() {
                 Dashboard
               </h1>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                Gestión de Productos
+                Gestor de Ventas.
               </p>
             </div>
             <div className="flex items-center gap-3">
@@ -33,7 +39,6 @@ export default function Dashboard() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700">
           <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
@@ -52,7 +57,7 @@ export default function Dashboard() {
                     Precio
                   </th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    Cantidad
+                    Stock
                   </th>
                   <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Total
@@ -60,21 +65,43 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                <tr>
-                  <td colSpan={4} className="px-6 py-12 text-center">
-                    <div className="flex flex-col items-center justify-center">
-                      <svg className="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                      </svg>
-                      <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">
-                        No hay productos
-                      </p>
-                      <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">
-                        Haz clic en "Agregar" para añadir tu primer producto
-                      </p>
-                    </div>
-                  </td>
-                </tr>
+                {products.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="px-6 py-12 text-center">
+                      <div className="flex flex-col items-center justify-center">
+                        <svg className="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                        </svg>
+                        <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">
+                          No hay productos
+                        </p>
+                        <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">
+                          Haz clic en "Agregar" para añadir tu primer producto
+                        </p>                
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  products.map((product) => {
+                    const total = product.price * product.quantity_sold;
+                    return (
+                      <tr key={product.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                        <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
+                          {product.name}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 text-right">
+                          ${product.price.toFixed(2)}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 text-right">
+                            {`${product.quantity_sold}/${product.quantity_max}` } 
+                        </td>
+                        <td className="px-6 py-4 text-sm font-semibold text-gray-900 dark:text-white text-right">
+                          ${total.toFixed(2)}
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
               </tbody>
               <tfoot className="bg-gray-100 dark:bg-gray-700">
                 <tr>
@@ -82,7 +109,7 @@ export default function Dashboard() {
                     VALOR TOTAL:
                   </td>
                   <td className="px-6 py-4 text-right text-lg font-bold text-green-600 dark:text-green-400">
-                    $0.00
+                    ${grandTotal.toFixed(2)}
                   </td>
                 </tr>
               </tfoot>
