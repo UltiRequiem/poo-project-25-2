@@ -1,10 +1,18 @@
 "use server";
 
+import BusinessAnalysis from "@/components/BusinessAnalysis";
 import ProductItem from "@/components/ProductItem";
 import { getProducts } from "@/lib/products";
 
 export default async function Dashboard() {
   const products = await getProducts()
+
+  // Serialize products to ensure Date objects are converted to strings
+  const serializedProducts = products.map(product => ({
+    ...product,
+    created_at: typeof product.created_at === 'string' ? product.created_at : product.created_at.toISOString(),
+    updated_at: typeof product.updated_at === 'string' ? product.updated_at : product.updated_at.toISOString(),
+  }));
 
   const grandTotal = products.reduce(
     (sum, product) => sum + product.price * product.quantity_sold,
@@ -18,7 +26,7 @@ export default async function Dashboard() {
         <div className="px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-purple-800">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Dashboard
               </h1>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
@@ -128,6 +136,9 @@ export default async function Dashboard() {
             </table>
           </div>
         </div>
+
+        {/* Business Analysis Section */}
+        <BusinessAnalysis products={serializedProducts} />
       </main>
     </div>
   );
