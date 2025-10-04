@@ -98,3 +98,20 @@ export async function incrementSoldQuantity(id: number, amount: number = 1): Pro
   
   return null;
 }
+
+export async function decrementSoldQuantity(id: number, amount: number = 1): Promise<Product | null> {
+  const { rows } = await turso.execute({
+    sql: `UPDATE products 
+          SET quantity_sold = quantity_sold - ?, 
+              updated_at = strftime('%Y-%m-%dT%H:%M:%fZ','now')
+          WHERE id = ? AND quantity_sold - ? >= 0
+          RETURNING *`,
+    args: [amount, id, amount]
+  });
+  
+  if (rows.length > 0) {
+    return rows[0] as unknown as Product;
+  }
+  
+  return null;
+}
