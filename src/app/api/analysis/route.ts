@@ -7,8 +7,8 @@ export async function POST(req: Request){
     const result = await generateText({
         model: openai("gpt-4o"),
         prompt: `Based in this data: ${data}, provide a summary with insights and suggestions 
-        for the business.`,
+        for the business. Do not use markdown, use plain text. It should be a conscise paragraph.`,
     });
 
-    return result.text;
+    return new Response (result.text);
 }

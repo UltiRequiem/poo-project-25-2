@@ -2,9 +2,17 @@
 
 import { getProducts } from "@/lib/products";
 import ProductActions from "@/components/ProductActions";
+import BusinessAnalysis from "@/components/BusinessAnalysis";
 
 export default async function Dashboard() {
   const products = await getProducts()
+
+  // Serialize products to ensure Date objects are converted to strings
+  const serializedProducts = products.map(product => ({
+    ...product,
+    created_at: typeof product.created_at === 'string' ? product.created_at : product.created_at.toISOString(),
+    updated_at: typeof product.updated_at === 'string' ? product.updated_at : product.updated_at.toISOString(),
+  }));
 
   const grandTotal = products.reduce(
     (sum, product) => sum + product.price * product.quantity_sold,
@@ -167,6 +175,9 @@ export default async function Dashboard() {
             </table>
           </div>
         </div>
+
+        {/* Business Analysis Section */}
+        <BusinessAnalysis products={serializedProducts} />
       </main>
     </div>
   );
