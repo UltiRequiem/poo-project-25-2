@@ -4,8 +4,8 @@ export interface Product {
   quantity_max: number;
   quantity_sold: number;
   price: number;
-  created_at: string;
-  updated_at: string;
+  created_at: string | Date;
+  updated_at: string | Date;
 }
 
 export interface CreateProductInput {
