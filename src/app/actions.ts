@@ -1,6 +1,6 @@
 "use server";
 
-import { incrementSoldQuantity, decrementSoldQuantity } from "@/lib/products";
+import { incrementSoldQuantity, decrementSoldQuantity, deleteProduct } from "@/lib/products";
 import { revalidatePath } from "next/cache";
 
 export async function incrementProductQuantity(productId: number) {
@@ -31,5 +31,20 @@ export async function decrementProductQuantity(productId: number) {
   } catch (error) {
     console.error("Error decrementing quantity:", error);
     return { error: "Error al actualizar la cantidad" };
+  }
+}
+
+export async function deleteProductFromDatabase(productId: number) {
+  try {
+    const result = await deleteProduct(productId);
+
+    if (result) {
+      revalidatePath("/");
+      return { success: true };
+    }
+    return { error: "No se puede eliminar el producto." };
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    return { error: "Error al eliminar el producto" };
   }
 }
