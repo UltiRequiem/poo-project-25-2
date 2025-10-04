@@ -97,7 +97,7 @@ export default function CreateProduct() {
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
-                        <title>Check</title>
+                        <title>Comprobar</title>
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -232,7 +232,7 @@ export default function CreateProduct() {
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <title>Loading</title>
+                          <title>Cargando</title>
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -250,7 +250,7 @@ export default function CreateProduct() {
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <title>Check</title>
+                          <title>Comprobar</title>
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
