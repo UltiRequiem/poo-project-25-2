@@ -5,13 +5,19 @@ import ProductItem from "@/components/ProductItem";
 import { getProducts } from "@/lib/products";
 
 export default async function Dashboard() {
-  const products = await getProducts()
+  const products = await getProducts();
 
   // Serialize products to ensure Date objects are converted to strings
-  const serializedProducts = products.map(product => ({
+  const serializedProducts = products.map((product) => ({
     ...product,
-    created_at: typeof product.created_at === 'string' ? product.created_at : product.created_at.toISOString(),
-    updated_at: typeof product.updated_at === 'string' ? product.updated_at : product.updated_at.toISOString(),
+    created_at:
+      typeof product.created_at === "string"
+        ? product.created_at
+        : product.created_at.toISOString(),
+    updated_at:
+      typeof product.updated_at === "string"
+        ? product.updated_at
+        : product.updated_at.toISOString(),
   }));
 
   const grandTotal = products.reduce(
@@ -35,7 +41,10 @@ export default async function Dashboard() {
             </div>
             <div className="flex items-center gap-3">
               <a href="/create-product">
-                <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors" type="button">
+                <button
+                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  type="button"
+                >
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -115,7 +124,7 @@ export default async function Dashboard() {
                     </td>
                   </tr>
                 ) : (
-                  products.map(product => (
+                  products.map((product) => (
                     <ProductItem key={product.id} product={product} />
                   ))
                 )}
