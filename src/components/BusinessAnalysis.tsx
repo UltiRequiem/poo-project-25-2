@@ -137,11 +137,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
         
         {analysis && !loading && !error && (
           <div className="prose prose-gray dark:prose-invert max-w-none">
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-              <div className="whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                 {analysis}
-              </div>
-            </div>
           </div>
         )}
         
