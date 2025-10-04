@@ -71,7 +71,7 @@ export default async function Dashboard() {
                   </th>
                   <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right texcot-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                     Total
                   </th>
                 </tr>
@@ -145,7 +145,7 @@ export default async function Dashboard() {
               <tfoot className="bg-gray-100 dark:bg-gray-700">
                 <tr>
                   <td
-                    colSpan={3}
+                    colSpan={4}
                     className="px-6 py-4 text-right text-base font-bold text-gray-900 dark:text-white"
                   >
                     VALOR TOTAL:
