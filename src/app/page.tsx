@@ -134,7 +134,6 @@ export default async function Dashboard() {
           </div>
         </div>
 
-        {/* Business Analysis Section */}
         <BusinessAnalysis products={serializedProducts} />
       </main>
     </div>
