@@ -67,7 +67,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
                 d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2-2V7a2 2 0 012-2h2a2 2 0 002 2v2a2 2 0 002 2h2a2 2 0 012-2V7a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 00-2 2h-2a2 2 0 00-2 2v6a2 2 0 01-2 2H9z"
               />
             </svg>
-            Análisis de Negocio
+            Análisis de Negocio con IA
           </h2>
           <button
             onClick={fetchAnalysis}
