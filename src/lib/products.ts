@@ -145,3 +145,19 @@ export async function decrementSoldQuantity(
 
   return null;
 }
+
+export function serializeProduct(products: Product[]) {
+  const serializedProducts = products.map((product) => ({
+    ...product,
+    created_at:
+      typeof product.created_at === "string"
+        ? product.created_at
+        : product.created_at.toISOString(),
+    updated_at:
+      typeof product.updated_at === "string"
+        ? product.updated_at
+        : product.updated_at.toISOString(),
+  }));
+
+  return serializedProducts;
+}
