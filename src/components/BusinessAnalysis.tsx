@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { Product } from "@/types/product";
 
 interface BusinessAnalysisProps {
@@ -12,7 +12,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchAnalysis = async () => {
+  const fetchAnalysis = useCallback(async () => {
     if (products.length === 0) return;
 
     setLoading(true);
@@ -38,11 +38,11 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [products]);
 
   useEffect(() => {
     fetchAnalysis();
-  }, [products]);
+  }, [fetchAnalysis]);
 
   if (products.length === 0) {
     return null;
@@ -59,7 +59,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <title>Análisis de Negocio</title>
+              <title>Análisis de Negocio con IA</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
