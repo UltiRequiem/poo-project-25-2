@@ -2,8 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { Product } from "@/types/product";
-import { generate } from "@/app/api/analysis/actions";
-import { readStreamableValue } from "@ai-sdk/rsc";
 
 interface BusinessAnalysisProps {
   products: Product[];
@@ -11,21 +9,35 @@ interface BusinessAnalysisProps {
 
 export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
   const [analysis, setAnalysis] = useState<string>("");
-  const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchAnalysis = useCallback(async () => {
     if (products.length === 0) return;
 
-    setAnalysis("");
-    setIsAnalyzing(true);
+    setLoading(true);
+    setError(null);
 
-    const { output } = await generate(JSON.stringify(products));
+    try {
+      const response = await fetch("/api/analysis", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: products }),
+      });
 
-    for await (const delta of readStreamableValue(output)) {
-      setAnalysis((currentAnalysis) => `${currentAnalysis}${delta}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch analysis");
+      }
+
+      const analysisText = await response.text();
+      setAnalysis(analysisText);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+    } finally {
+      setLoading(false);
     }
-
-    setIsAnalyzing(false);
   }, [products]);
 
   useEffect(() => {
@@ -59,12 +71,12 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
           </h2>
           <button
             onClick={fetchAnalysis}
-            disabled={isAnalyzing}
+            disabled={loading}
             className="flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             type="button"
           >
             <svg
-              className={`w-4 h-4 ${isAnalyzing ? "animate-spin" : ""}`}
+              className={`w-4 h-4 ${loading ? "animate-spin" : ""}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -77,13 +89,13 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
                 d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
               />
             </svg>
-            {isAnalyzing ? "Analizando..." : "Actualizar"}
+            {loading ? "Analizando..." : "Actualizar"}
           </button>
         </div>
       </div>
 
       <div className="px-6 py-4">
-        {!analysis && (
+        {loading && (
           <div className="flex items-center justify-center py-8">
             <div className="flex items-center gap-3 text-gray-500 dark:text-gray-400">
               <svg
@@ -105,7 +117,7 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
           </div>
         )}
 
-        {/* {error && (
+        {error && (
           <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
             <div className="flex items-center gap-2 text-red-800 dark:text-red-400">
               <svg
@@ -128,15 +140,15 @@ export default function BusinessAnalysis({ products }: BusinessAnalysisProps) {
               {error}
             </p>
           </div>
-        )} */}
+        )}
 
-        {analysis && (
+        {analysis && !loading && !error && (
           <div className="prose prose-gray dark:prose-invert max-w-none">
             {analysis}
           </div>
         )}
 
-        {!analysis && !isAnalyzing && (
+        {!analysis && !loading && !error && (
           <div className="text-center py-8 text-gray-500 dark:text-gray-400">
             <svg
               className="w-12 h-12 mx-auto mb-3 opacity-50"
