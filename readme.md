@@ -37,7 +37,7 @@ Diseñar e implementar una aplicación que gestione de manera eficiente un inven
 | **React**    | Biblioteca para la creación de componentes dinámicos   | 
 | **TailwindCSS** | Framework de estilos para diseño responsivo y moderno.   |
 |**TypeScript**| Lenguaje tipado que permite aplicar POO en el desarrollo web |
-|**SQLite**| Base de datos liviana para almacenar la información del inventario |
+|**Turso**| Base de datos liviana para almacenar la información del inventario |
 |**BiomeJS**| Linter y formateador de código |
 
 ## 🧱 Estructura del proyecto
@@ -55,7 +55,7 @@ El proyecto se compone de varios archivos de configuración y código que garant
 
 ## 🧮 Base de datos
 
-La base de datos fue creada con SQLite y contiene la tabla principal products, estructurada de la siguiente manera:
+La base de datos fue creada con Turso y contiene la tabla principal products, estructurada de la siguiente manera:
 | Campo           | Tipo                                                    | Descripción                 |
 | --------------- | ------------------------------------------------------- | --------------------------- |
 | `id`            | INTEGER PRIMARY KEY AUTOINCREMENT                       | Identificador único.        |
