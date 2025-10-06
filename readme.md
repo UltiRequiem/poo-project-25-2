@@ -1,4 +1,3 @@
-
 # 🧾 SISTEMA DE INVENTARIO DE PRODUCTOS
 
 **Curso: Programación Orientada a Objetos**
