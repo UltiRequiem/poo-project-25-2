@@ -1,5 +1,7 @@
 # 🧾 SISTEMA DE INVENTARIO DE PRODUCTOS
 
+Moved to https://github.com/UltiRequiem/uni-cs-pe
+
 **Curso: Programación Orientada a Objetos**
 
 **Año: 2025**
